@@ -7,8 +7,7 @@ declare -r sudo="/usr/bin/sudo"
 
 declare -r PATH="/usr/share/gnome-shell/extensions"
 declare -r -a EXTENSIONS=(
-    "https://github.com/gTile/gTile.git"
-    "https://github.com/mrakow/gnome-shell-web-search-provider.git"
+    "https://github.com/micheleg/dash-to-dock"
 )
 
 for i in "${EXTENSIONS[@]}"

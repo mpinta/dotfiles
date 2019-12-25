@@ -1,4 +1,4 @@
 #!/bin/bash
 declare -r cp="/bin/cp"
 
-$cp .tmux.conf -t "~/"
+$cp .tmux.conf -t "$HOME/"

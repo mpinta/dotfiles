@@ -15,6 +15,7 @@ declare -r -a ADDONS=(
     "https://addons.mozilla.org/en-US/firefox/addon/lastpass-password-manager"
     "https://addons.mozilla.org/en-US/firefox/addon/simple-translate"
     "https://addons.mozilla.org/en-US/firefox/addon/ublock-origin"
+    "https://addons.mozilla.org/en-US/firefox/addon/tree-style-tab/"
 )
 
 for i in "${ADDONS[@]}"

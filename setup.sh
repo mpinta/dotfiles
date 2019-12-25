@@ -13,9 +13,10 @@ case "$1" in
     --ubuntu) 
         $bash apt_update_upgrade.sh
         $bash apt_packages.sh
-        $bash docker.sh
+        $bash ubuntu_docker.sh
         $bash snap_packages.sh
         $bash firefox_addons.sh
+        $bash firefox_stylesheets.sh
         $bash gnome_extensions.sh
         $bash gnome_icons.sh
         $bash directories.sh

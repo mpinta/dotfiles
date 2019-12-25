@@ -8,7 +8,6 @@ declare -r sudo="/usr/bin/sudo"
 declare -r PATH="/usr/share/icons"
 declare -r -a ICONS=(
     "https://github.com/OrancheloTeam/oranchelo-icon-theme"
-    "https://github.com/bikass/korla"
 )
 
 for i in "${ICONS[@]}"
