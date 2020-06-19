@@ -1,8 +1,67 @@
-"Change tabstop
-set tabstop=2
+syntax on
 
-"Set arrows to skip over text
-execute "set <xUp>=\e[1;*A" 
-execute "set <xDown>=\e[1;*B"
-execute "set <xRight>=\e[1;*C"
-execute "set <xLeft>=\e[1;*D"
+set encoding=utf-8
+set nu
+set nowrap
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+set colorcolumn=80
+set noerrorbells
+
+" Tab width
+set tabstop=4 softtabstop=4
+set shiftwidth=4
+
+" Tab to spaces
+set expandtab
+
+" Enable case sensitive search
+set smartcase
+
+" Better indent to new lines 
+set smartindent
+
+" Real time search results
+set incsearch
+
+" Fix color erase for 256-color teminal
+set term=screen-256color
+
+highlight ColorColumn ctermbg=0 guibg=lightgrey
+
+" Plugins
+call plug#begin('~/.vim.plugged')
+
+Plug 'morhetz/gruvbox'
+Plug 'ycm-core/YouCompleteMe'
+Plug 'mbbill/undotree'
+
+call plug#end()
+
+" Color scheme
+colorscheme gruvbox
+set background=dark
+
+let mapleader=' '
+
+" Window size
+let netrw_winsize=25
+
+" File tree settings
+let g:netrw_browse_split=2
+let g:netrw_banner=0
+
+" Map hjkl to move between window splits
+nnoremap <leader>h :wincmd h<CR>
+nnoremap <leader>j :wincmd j<CR>
+nnoremap <leader>k :wincmd k<CR>
+nnoremap <leader>l :wincmd l<CR>
+
+" Map undo tree 
+noremap <leader>u :UndotreeShow<CR>
+
+" Map file explorer 
+noremap <leader>fe :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+
