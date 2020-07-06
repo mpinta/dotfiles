@@ -95,6 +95,7 @@ arch_install() {
     sudo pacman -S noto-fonts
     sudo pacman -S ttf-font-awesome otf-font-awesome
     sudo pacman -S ttf-font-awesome-4 otf-font-awesome-4
+    sudo pacman -S wget jq libxml2
     fonts_setup
     # xinit
     xinit_setup
@@ -107,7 +108,6 @@ arch_install() {
     # scripts
     scripts_setup
     # firefox addons and stylesheets
-    sudo pacman -S wget jq libxml2
     firefox_setup 
     sudo pacman -Rns wget jq libxml2
     # git
