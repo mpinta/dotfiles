@@ -47,6 +47,10 @@ firefox_setup() {
     sh .firefox/stylesheets.sh 
 }
 
+fonts_setup() {
+    sh .fonts/jetbrains.sh
+}
+
 git_setup() {
     git config --global user.name 'Matic Pintarič'
     git config --global user.email matic.pintaric@outlook.com
@@ -87,6 +91,11 @@ arch_install() {
     sudo pacman -S kitty ranger git vim openvpn unzip tar --noconfirm
     sudo pacman -S xrandr pulseaudio pavucontrol bluez bluez-utils compton redshift feh flameshot --noconfirm
     sudo pacman -S firefox code vlc transmission-cli --noconfirm
+    # fonts
+    sudo pacman -S noto-fonts
+    sudo pacman -S ttf-font-awesome otf-font-awesome
+    sudo pacman -S ttf-font-awesome-4 otf-font-awesome-4
+    fonts_setup
     # xinit
     xinit_setup
     # bash profile
@@ -109,11 +118,6 @@ arch_install() {
     mkdir -p $HOME/{dev,downloads,faks,pictures}
     # firefox download directory
     sh .firefox/downloadDir.sh
-    # fonts
-    sudo pacman -S noto-fonts
-    sudo pacman -S ttf-font-awesome otf-font-awesome
-    sudo pacman -S ttf-font-awesome-4 otf-font-awesome-4
-    sh .fonts/fonts.sh
 }
 
 DIST=''

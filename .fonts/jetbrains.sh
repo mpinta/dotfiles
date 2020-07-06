@@ -1,9 +1,9 @@
 #!/bin/bash
 
 ROUTE='/usr/share/fonts'
-JETBRAINS='https://www.jetbrains.com/lp/mono/'
+SITE='https://www.jetbrains.com/lp/mono/'
 
-wget -O /tmp/index.html $JETBRAINS
+wget -O /tmp/index.html $SITE
 URL=$(xmllint --html --xpath "(//a[contains(text(),'Download font')])[1]/@href" /tmp/index.html)
 URL=${URL:7:-1}
 sudo wget -O $ROUTE/temp.zip $URL
