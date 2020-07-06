@@ -9,8 +9,8 @@ set undodir=~/.vim/undodir
 set undofile
 set colorcolumn=80
 set noerrorbells
-
-" Tab width
+set relativenumber
+set cursorline
 set tabstop=4 softtabstop=4
 set shiftwidth=4
 
@@ -29,12 +29,11 @@ set incsearch
 " Fix color erase for 256-color teminal
 set term=screen-256color
 
-highlight ColorColumn ctermbg=0 guibg=lightgrey
-
 " Plugins
 call plug#begin('~/.vim.plugged')
 
 Plug 'morhetz/gruvbox'
+Plug 'vim-utils/vim-man'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'mbbill/undotree'
 
@@ -44,6 +43,16 @@ call plug#end()
 colorscheme gruvbox
 set background=dark
 
+" Transparent background
+" highlight Normal guibg=NONE ctermbg=NONE
+
+" Transparent cursor line
+ highlight CursorLine guibg=NONE ctermbg=NONE
+
+" Transparent cursor line number
+highlight CursorLineNr guibg=NONE ctermbg=NONE
+
+" Set leader key
 let mapleader=' '
 
 " Window size

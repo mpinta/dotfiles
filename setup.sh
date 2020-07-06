@@ -13,15 +13,15 @@ print_dists() {
 }
 
 config_setup() {
-    mkdir -p $HOME/.config && cp .config/* -t $HOME/.config 
+    mkdir -p $HOME/.config && cp -r .config/* -t $HOME/.config 
 }
 
 xorg_setup() {
-    sudo mkdir -p /etc/X11/xorg.conf.d && cp .xorg/* -t /etc/X11/xorg.conf.d 
+    sudo mkdir -p /etc/X11/xorg.conf.d && cp -r .xorg/* -t /etc/X11/xorg.conf.d 
 }
 
 scripts_setup() {
-    mkdir -p $HOME/.bin/scripts && cp .scripts/* -t $HOME/.bin/scripts
+    mkdir -p $HOME/.scripts && cp -r .scripts/* -t $HOME/.scripts
 }
 
 xinit_setup() {
@@ -34,6 +34,8 @@ bash_profile_setup() {
 
 vim_setup() {
     cp .vimrc -t $HOME
+    # create undodir
+    mkdir -p $HOME/.vim/undodir
 }
 
 tmux_setup() {
@@ -81,7 +83,10 @@ ubuntu_install() {
 
 arch_install() {
     # pacman packages
-    sudo pacman -S i3status i3lock kitty ranger firefox code vlc git vim openvpn transmission-cli xrandr unzip tar pulseaudio bluez bluez-utils compton redshift feh flameshot --noconfirm
+    sudo pacman -S NetworkManager xorg-server xorg-xinit i3-gaps i3-status i3lock rxvt-unidode dmenu --noconfirm
+    sudo pacman -S kitty ranger git vim openvpn unzip tar --noconfirm
+    sudo pacman -S xrandr pulseaudio pavucontrol bluez bluez-utils compton redshift feh flameshot --noconfirm
+    sudo pacman -S firefox code vlc transmission-cli --noconfirm
     # xinit
     xinit_setup
     # bash profile
@@ -104,6 +109,11 @@ arch_install() {
     mkdir -p $HOME/{dev,downloads,faks,pictures}
     # firefox download directory
     sh .firefox/downloadDir.sh
+    # fonts
+    sudo pacman -S noto-fonts
+    sudo pacman -S ttf-font-awesome otf-font-awesome
+    sudo pacman -S ttf-font-awesome-4 otf-font-awesome-4
+    sh .fonts/fonts.sh
 }
 
 DIST=''

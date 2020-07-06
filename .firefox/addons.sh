@@ -11,7 +11,7 @@ declare -a ADDONS=(
 )
 
 for i in "${ADDONS[@]}"
-    do
+do
     wget -O /tmp/index.html $i
     JSON=$(xmllint --html --xpath '//body//script/text()' /tmp/index.html)
     JSON=${JSON:9:-18}
