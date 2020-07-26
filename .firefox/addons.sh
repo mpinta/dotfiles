@@ -8,6 +8,7 @@ declare -a ADDONS=(
     'https://addons.mozilla.org/en-US/firefox/addon/simple-translate/'
     'https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/'
     'https://addons.mozilla.org/en-US/firefox/addon/tree-style-tab/'
+    'https://addons.mozilla.org/en-US/firefox/addon/darkreader/'
 )
 
 for i in "${ADDONS[@]}"

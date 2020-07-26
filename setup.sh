@@ -13,33 +13,33 @@ print_dists() {
 }
 
 config_setup() {
-    mkdir -p $HOME/.config && cp -r .config/* -t $HOME/.config 
+    mkdir -p $HOME/.config/ && cp -r .config/* -t $HOME/.config/
 }
 
 xorg_setup() {
-    sudo mkdir -p /etc/X11/xorg.conf.d && cp -r .xorg/* -t /etc/X11/xorg.conf.d 
+    sudo mkdir -p /etc/X11/xorg.conf.d/ && cp -r .xorg/* -t /etc/X11/xorg.conf.d/
 }
 
 scripts_setup() {
-    mkdir -p $HOME/.scripts && cp -r .scripts/* -t $HOME/.scripts
+    mkdir -p $HOME/.scripts/ && cp -r .scripts/* -t $HOME/.scripts/
 }
 
 xinit_setup() {
-    cp .xinitrc -t $HOME
+    cp .xinitrc -t $HOME/
 }
 
 bash_profile_setup() {
-    cp .bash_profile -t $HOME
+    cp .bash_profile -t $HOME/
 }
 
 vim_setup() {
-    cp .vimrc -t $HOME
+    cp .vimrc -t $HOME/
     # create undodir
-    mkdir -p $HOME/.vim/undodir
+    mkdir -p $HOME/.vim/undodir/
 }
 
 tmux_setup() {
-    cp .tmux.conf -t $HOME
+    cp .tmux.conf -t $HOME/
 }
 
 firefox_setup() { 
@@ -61,7 +61,7 @@ ubuntu_install() {
     # update and upgrade
     sudo apt update && sudo apt upgrade -y
     # apt packages
-    sudo apt install git vim tmux openvpn transmission virtualbox gnome-tweak-tool -y
+    sudo apt install git vim tmux transmission virtualbox gnome-tweak-tool -y
     # snap packages
     sudo snap install spotify discord vlc
     sudo snap install code --classic
@@ -87,9 +87,9 @@ ubuntu_install() {
 
 arch_install() {
     # pacman packages
-    sudo pacman -S NetworkManager xorg-server xorg-xinit i3-gaps i3-status i3lock rxvt-unidode dmenu --noconfirm
-    sudo pacman -S kitty ranger git vim openvpn unzip tar --noconfirm
-    sudo pacman -S xrandr pulseaudio pavucontrol bluez bluez-utils compton redshift feh flameshot --noconfirm
+    sudo pacman -S networkmanager xorg-server xorg-xinit i3-gaps i3status i3lock i3lock-color rxvt-unidode dmenu --noconfirm
+    sudo pacman -S kitty ranger git vim unzip tar --noconfirm
+    sudo pacman -S mesa xrandr pulseaudio pavucontrol playerctl bluez bluez-utils compton redshift feh flameshot scrot --noconfirm
     sudo pacman -S firefox code vlc transmission-cli --noconfirm
     # fonts
     sudo pacman -S noto-fonts
@@ -97,6 +97,9 @@ arch_install() {
     sudo pacman -S ttf-font-awesome-4 otf-font-awesome-4
     sudo pacman -S wget jq libxml2
     fonts_setup
+    # firefox addons and stylesheets
+    firefox_setup 
+    sudo pacman -Rns wget jq libxml2
     # xinit
     xinit_setup
     # bash profile
@@ -107,9 +110,6 @@ arch_install() {
     xorg_setup
     # scripts
     scripts_setup
-    # firefox addons and stylesheets
-    firefox_setup 
-    sudo pacman -Rns wget jq libxml2
     # git
     git_setup
     # vim
