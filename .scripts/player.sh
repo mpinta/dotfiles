@@ -25,7 +25,6 @@ player_previous() {
     playerctl previous
 }
 
-COMMAND=''
 while [[ $# -gt 0 ]]; do
     case "$1" in
         -h|--help) print_help; exit 0;;
@@ -36,4 +35,6 @@ while [[ $# -gt 0 ]]; do
         *) echo "Unvalid parameter: $1"; exit 1;;
     esac
 done
+
+exit 0
 

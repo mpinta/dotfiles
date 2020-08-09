@@ -45,7 +45,6 @@ only_dp2() {
     xrandr --output eDP-1 --off --output DP-2 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1 --off
 }
 
-COMMAND=''
 while [[ $# -gt 0 ]]; do
     case "$1" in
         -h|--help) print_help; exit 0;;
@@ -58,4 +57,6 @@ while [[ $# -gt 0 ]]; do
         *) echo "Unvalid parameter: $1"; exit 1;;
     esac
 done
+
+exit 0
 

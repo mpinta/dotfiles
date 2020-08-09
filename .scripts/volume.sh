@@ -36,7 +36,6 @@ current_mute() {
     echo $(pactl list sinks | awk '/^\s+Name: /{indefault = $2 == "'$DEFAULT_SINK'"}/^\s+Mute: / && indefault {print $2; exit}')
 }
 
-COMMAND=''
 while [[ $# -gt 0 ]]; do
     case "$1" in
         -h|--help) print_help; exit 0;;
@@ -47,4 +46,6 @@ while [[ $# -gt 0 ]]; do
         *) echo "Unvalid parameter: $1"; exit 1;;
     esac
 done
+
+exit 0
 
