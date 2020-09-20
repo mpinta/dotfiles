@@ -34,8 +34,9 @@ call plug#begin('~/.vim.plugged')
 
 Plug 'morhetz/gruvbox'
 Plug 'vim-utils/vim-man'
-Plug 'ycm-core/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe'
 Plug 'mbbill/undotree'
+Plug 'JuliaEditorSupport/julia-vim'
 
 call plug#end()
 
@@ -47,13 +48,11 @@ set background=dark
 " highlight Normal guibg=NONE ctermbg=NONE
 
 " Transparent cursor line
- highlight CursorLine guibg=NONE ctermbg=NONE
+highlight CursorLine guibg=NONE ctermbg=NONE
 
 " Transparent cursor line number
 highlight CursorLineNr guibg=NONE ctermbg=NONE
 
-" Set leader key
-let mapleader=' '
 
 " Window size
 let netrw_winsize=25
@@ -61,6 +60,9 @@ let netrw_winsize=25
 " File tree settings
 let g:netrw_browse_split=2
 let g:netrw_banner=0
+
+" Set leader key
+let mapleader=' '
 
 " Map hjkl to move between window splits
 nnoremap <leader>h :wincmd h<CR>
@@ -73,4 +75,8 @@ noremap <leader>u :UndotreeShow<CR>
 
 " Map file explorer 
 noremap <leader>fe :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+
+" YouCompleteMe settings
+let g:ycm_server_python_interpreter='/usr/bin/python'
+let g:ycm_autoclose_preview_window_after_insertion = 1
 

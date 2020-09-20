@@ -1,10 +1,17 @@
 #!/bin/bash
 
-scrot /tmp/lock.png
-convert /tmp/lock.png -scale 10% -scale 1000% /tmp/lock.png
+IMAGE='/tmp/lock.png'
+
+scrot $IMAGE
+
+# convert to pixel
+#convert $IMAGE -scale 10% -scale 1000% $IMAGE
+
+# convert to blur
+convert $IMAGE -blur '5x3' $IMAGE
 
 i3lock \
--i /tmp/lock.png \
+-i $IMAGE \
 --clock \
 --radius=120 \
 --datecolor=ffffffff \
@@ -21,5 +28,5 @@ i3lock \
 --insidewrongcolor=#ff355b99 \
 --wrongcolor=#ffffffff
 
-rm /tmp/lock.png
+rm $IMAGE
 

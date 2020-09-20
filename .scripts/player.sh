@@ -10,11 +10,11 @@ print_help() {
 }
 
 player_play() {
-    playerctl play-pause 
+    playerctl play-pause
 }
 
 player_pause() {
-    playerctl pause-pause
+    playerctl play-pause
 }
 
 player_next() {

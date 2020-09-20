@@ -10,5 +10,5 @@ alias ls='ls --color=auto'
 GREEN="\[$(tput setaf 100)\]"
 RESET="\[$(tput sgr0)\]"
 
-PS1="$GREEN[$RESET\u@\h \W$GREEN]$RESET\$ "
+PS1="$GREEN[$RESET\u$GREEN@$RESET\h \W$GREEN]$RESET\$ "
 

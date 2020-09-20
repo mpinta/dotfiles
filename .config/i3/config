@@ -148,12 +148,18 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # === i3bar ===
 bar {
+    # disable workspace switch on mouse click
+    bindsym button1 nop
+    # disable scrolling
+    bindsym button4 nop
+    bindsym button5 nop
+
     font pango: Noto Sans, FontAwesome 8
     position bottom
     tray_output none
     status_command /usr/bin/bumblebee-status \
-    -m nic date time weather pasink pasource brightness sensors memory battery \
-    -p root.path=/ nic.states="up" nic.format="{ssid} {ip}" time.format="%H:%M" weather.showcity="true" sensors.show_freq="false" memory.usedonly="true" \
+    -m nic date time pasink pasource brightness sensors memory battery \
+    -p root.path=/ nic.states="up" nic.format="{ssid}" date.format="%d/%m/%Y" time.format="%H:%M" sensors.show_freq="false" memory.usedonly="true" \
     -t gruvbox-powerline
 }
 
@@ -163,6 +169,9 @@ gaps inner 6
 gaps outer 6
 
 # === custom bindings ===
+# language toggle
+exec --no-startup-id setxkbmap us,si -option 'grp:alt_shift_toggle'
+
 # screenshot current screen and save it to pictures
 bindsym Print exec --no-startup-id $HOME/.scripts/screenshot.sh -p
 
@@ -186,18 +195,14 @@ for_window [class="floating_term"] floating enable, resize set 800px 500px
 # dunst
 exec --no-startup-id dunst
 
-# compton
-exec --no-startup-id compton -b -f
-
-# redshift
-exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
-exec --no-startup-id redshift-gtk
+# picom
+exec --no-startup-id picom -b --config $HOME/.config/picom/picom.conf
 
 # screenshot
 exec --no-startup-id $HOME/.scripts/screenshot.sh -s
 
 # background
-exec --no-startup-id $HOME/.scripts/background.sh
+exec_always --no-startup-id $HOME/.scripts/background.sh
 
 # video
 exec --no-startup-id $HOME/.scripts/video.sh -s
