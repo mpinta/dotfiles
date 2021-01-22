@@ -1,0 +1,72 @@
+#!/bin/bash
+
+print_help() {
+    echo 'Help:'
+    echo '[-h|--help] for help'
+    echo '[-cw|--connect-wh] to connect wh' 
+    echo '[-dw|--disconnect-wh] to disconnect wh' 
+    echo '[-ca|--connect-airpods] to connect airpods'
+    echo '[-ca|--connect-airpods] to connect airpods'
+    echo '[-ck|--connect-keyboard] to connect keyboard'
+    echo '[-dk|--disconnect-keyboard] to disconnect keyboard'
+    
+}
+
+initial_sequence() {
+    echo -e 'power on\nagent on\ndefault-agent\nscan on' | bluetoothctl
+    sleep 1
+}
+
+connect_wh() {
+    initial_sequence
+    echo -e 'connect 38:18:4C:D3:77:20' | bluetoothctl
+    closing_sequence
+}
+
+disconnect_wh() {
+    echo -e 'disconnect 38:18:4C:D3:77:20' | bluetoothctl
+    closing_sequence
+}
+
+connect_airpods() {
+    initial_sequence
+    echo -e 'connect 3C:4D:BE:30:B4:ED' | bluetoothctl
+    closing_sequence
+}
+
+disconnect_airpods() {
+    echo -e 'disconnect 3C:4D:BE:30:B4:ED' | bluetoothctl
+    closing_sequence
+}
+
+connect_keyboard() {
+    initial_sequence
+    echo -e 'connect FC:A3:08:00:61:35' | bluetoothctl
+    closing_sequence
+}
+
+disconnect_keyboard() {
+    echo -e 'disconnect FC:A3:08:00:61:35' | bluetoothctl
+    closing_sequence
+}
+
+closing_sequence() {
+    sleep 1
+    echo -e 'scan off\nexit' | bluetoothctl
+}
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -h|--help) print_help; exit 0;;
+        -cw|--connect-wh) connect_wh; break;;
+        -dw|--disconnect-wh) disconnect_wh; break;;
+        -ca|--connect-airpods) connect_airpods; break;;
+        -da|--disconnect-airpods) disconnect_airpods; break;;
+        -ck|--connect-keyboard) connect_keyboard; break;;
+        -dk|--disconnect-keyboard) disconnect_keyboard; break;;
+        *) echo "Unvalid parameter: $1"; exit 1;;
+    esac
+done
+
+exit 0
+

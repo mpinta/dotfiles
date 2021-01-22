@@ -2,6 +2,7 @@ syntax on
 
 set encoding=utf-8
 set nu
+set guicursor=
 set nowrap
 set noswapfile
 set nobackup
@@ -27,7 +28,7 @@ set smartindent
 set incsearch
 
 " Fix color erase for 256-color teminal
-set term=screen-256color
+" set term=screen-256color
 
 " Plugins
 call plug#begin('~/.vim.plugged')
@@ -38,6 +39,7 @@ Plug 'mbbill/undotree'
 
 call plug#end()
 
+" Set colorscheme
 colorscheme dracula
 
 " Transparent background

@@ -1,10 +1,16 @@
-# === i3 config file ===
+# ---
+# i3 config file
+# ---
 
+# super key
 set $mod Mod4
 
-# === basics ===
+# ---
+# Basics
+# ---
+
 # font
-font pango:Noto Sans 8
+font pango:JetBrains Mono
 
 # xss-lock startup 
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
@@ -28,23 +34,29 @@ bindsym $mod+Shift+r restart
 # exit i3
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-# === laptop specifics ===
+# ---
+# Laptop specifics
+# ---
+
 # volume
-bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.scripts/volume.sh -u && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.scripts/volume.sh -d && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id $HOME/.scripts/volume.sh -m && $refresh_i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/.bin/volume -u && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/.bin/volume -d && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id $HOME/.bin/volume -m && $refresh_i3status
 
 # player
-bindsym XF86AudioPlay exec --no-startup-id $HOME/.scripts/player.sh -pl
-bindsym XF86AudioPause exec --no-startup-id $HOME/.scripts/player.sh -pa
-bindsym XF86AudioNext exec --no-startup-id $HOME/.scripts/player.sh -ne
-bindsym XF86AudioPrev exec --no-startup-id $HOME/.scripts/player.sh -pr
+bindsym XF86AudioPlay exec --no-startup-id $HOME/.bin/player -pl
+bindsym XF86AudioPause exec --no-startup-id $HOME/.bin/player -pa
+bindsym XF86AudioNext exec --no-startup-id $HOME/.bin/player -ne
+bindsym XF86AudioPrev exec --no-startup-id $HOME/.bin/player -pr
 
 # brightness
-bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/.scripts/brightness.sh -u && $refresh_i3status
-bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/.scripts/brightness.sh -d && $refresh_i3status 
+bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/.bin/brightness -u && $refresh_i3status
+bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/.bin/brightness -d && $refresh_i3status 
 
-# === windows ===
+# ---
+# Windows
+# ---
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -109,7 +121,10 @@ bindsym $mod+Shift+space floating toggle
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
-# === workspaces ===
+# ---
+# Workspaces
+# ---
+
 # define names for default workspaces 
 set $ws1 "1" 
 set $ws2 "2"
@@ -146,7 +161,10 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# === i3bar ===
+# ---
+# Status bar
+# ---
+
 bar {
     # disable workspace switch on mouse click
     bindsym button1 nop
@@ -154,44 +172,53 @@ bar {
     bindsym button4 nop
     bindsym button5 nop
 
-    font pango: Noto Sans, FontAwesome 8
+    font pango: JetBrains Mono 10
     position bottom
     tray_output none
     status_command /usr/bin/bumblebee-status \
-    -m nic date time pasink pasource brightness sensors memory battery \
+    -m date time pasink pasource brightness nic sensors memory battery \
     -p root.path=/ nic.states="up" nic.format="{ssid}" date.format="%d/%m/%Y" time.format="%H:%M" sensors.show_freq="false" memory.usedonly="true" \
-    -t gruvbox-powerline
+    -t default
 }
 
-# === i3gaps ===
+# ---
+# Gaps
+# ---
+
 for_window [class="^.*"] border pixel 0  
 gaps inner 6
 gaps outer 6
 
-# === custom bindings ===
+# ---
+# Custom bindings
+# ---
+
 # language toggle
-exec --no-startup-id setxkbmap us,si -option 'grp:alt_shift_toggle'
+exec_always --no-startup-id setxkbmap us,si -option 'grp:alt_shift_toggle'
 
 # screenshot current screen and save it to pictures
-bindsym Print exec --no-startup-id $HOME/.scripts/screenshot.sh -p
+bindsym Print exec --no-startup-id $HOME/.bin/screenshot -p
 
 # screenshot current screen and save it to clipboard
-bindsym $mod+p exec --no-startup-id $HOME/.scripts/screenshot.sh -c
+bindsym $mod+p exec --no-startup-id $HOME/.bin/screenshot -c
 
 # screenshot gui 
-bindsym $mod+Shift+p exec --no-startup-id $HOME/.scripts/screenshot.sh -g
+bindsym $mod+Shift+p exec --no-startup-id $HOME/.bin/screenshot -g
 
 # open ranger
 bindsym $mod+Shift+Return exec kitty -e ranger
 
 # lock screen 
-bindsym $mod+Escape exec $HOME/.scripts/lock.sh
+bindsym $mod+Escape exec $HOME/.bin/lock
 
 # floating terminal
 bindsym $mod+Shift+f exec --no-startup-id kitty --class=floating_term
 for_window [class="floating_term"] floating enable, resize set 800px 500px
 
-# === custom scripts ===
+# --- 
+# Custom scripts
+# ---
+
 # dunst
 exec --no-startup-id dunst
 
@@ -199,11 +226,11 @@ exec --no-startup-id dunst
 exec --no-startup-id picom -b --config $HOME/.config/picom/picom.conf
 
 # screenshot
-exec --no-startup-id $HOME/.scripts/screenshot.sh -s
+exec --no-startup-id $HOME/.bin/screenshot -s
 
 # background
-exec_always --no-startup-id $HOME/.scripts/background.sh
+exec_always --no-startup-id $HOME/.bin/background
 
-# video
-exec --no-startup-id $HOME/.scripts/video.sh -s
+# redshift
+exec --no-startup-id redshift-gtk
 

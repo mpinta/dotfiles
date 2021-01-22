@@ -1,0 +1,54 @@
+#!/bin/bash
+
+MONITORS=$(xrandr -q | grep ' connected' | wc -l)
+
+print_help() {
+    echo 'Help:'
+    echo '[-h|--help] for help'
+    echo '[-el|--edp-left] to enable edp on left side'
+    echo '[-er|--edp-right] to enable edp on right side'
+    echo '[-de|--disable-edp] to disable edp'
+    echo '[-oe|--only-edp] to enable only edp'
+    echo '[-dl|--dp1-left] to enable dp1 on left side'
+    echo '[-dr|--dp1-right] to enable dp1 on right side'
+}
+
+enable_edp_left() {
+    xrandr --output eDP-1 --auto --left-of DP-1
+}
+
+enable_edp_right() {
+    xrandr --output eDP-1 --auto --right-of DP-1
+}
+
+disable_edp() {
+    xrandr --output eDP-1 --off
+}
+
+only_edp() {
+    xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1 --off --output DP-2 --off
+}
+
+enable_dp1_left() {
+    xrandr --output eDP-1 --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --output DP-2 --off
+}
+
+enable_dp1_right() {
+    xrandr --output eDP-1 --mode 1920x1080 --pos 0x0 --rotate normal --output DP-1 --primary --mode 1920x1080 --pos 1920x0 --rotate normal --output DP-2 --off
+}
+
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -h|--help) print_help; exit 0;;
+        -el|--edp-left) enable_edp_left; exit 0;;
+        -er|--edp-right) enable_edp_right; exit 0;;
+        -de|--disable-edp) disable_edp; exit 0;;
+        -oe|--only-edp) only_edp; exit 0;;
+        -dl|--dp1-left) enable_dp1_left; exit 0;;
+        -dr|--dp1-right) enable_dp1_right; exit 0;;
+        *) echo "Unvalid parameter: $1"; exit 1;;
+    esac
+done
+
+exit 0
+

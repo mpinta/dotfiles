@@ -20,8 +20,8 @@ xorg_setup() {
     sudo mkdir -p /etc/X11/xorg.conf.d/ && cp -r .xorg/* -t /etc/X11/xorg.conf.d/
 }
 
-scripts_setup() {
-    mkdir -p $HOME/.scripts/ && cp -r .scripts/* -t $HOME/.scripts/
+bin_setup() {
+    mkdir -p $HOME/.bin/ && cp -r .bin/* -t $HOME/.bin/
 }
 
 xinit_setup() {
@@ -43,12 +43,12 @@ tmux_setup() {
 }
 
 firefox_setup() { 
-    sh .firefox/addons.sh
-    sh .firefox/stylesheets.sh 
+    ./.firefox/addons.sh
+    ./.firefox/stylesheets.sh 
 }
 
 fonts_setup() {
-    sh .fonts/jetbrains.sh
+    ./.fonts/jetbrains.sh
 }
 
 git_setup() {
@@ -86,20 +86,18 @@ ubuntu_install() {
 }
 
 arch_install() {
+    # add helpers
+    sudo pacman -S wget jq libxml2
     # pacman packages
     sudo pacman -S networkmanager xorg-server xorg-xinit i3-gaps i3status i3lock i3lock-color rxvt-unidode dmenu --noconfirm
     sudo pacman -S kitty ranger git vim unzip tar --noconfirm
     sudo pacman -S mesa xrandr pulseaudio pavucontrol playerctl bluez bluez-utils compton redshift feh flameshot scrot --noconfirm
-    sudo pacman -S firefox code vlc transmission-cli --noconfirm
+    sudo pacman -S firefox vlc transmission-cli --noconfirm
     # fonts
     sudo pacman -S noto-fonts
     sudo pacman -S ttf-font-awesome otf-font-awesome
     sudo pacman -S ttf-font-awesome-4 otf-font-awesome-4
-    sudo pacman -S wget jq libxml2
     fonts_setup
-    # firefox addons and stylesheets
-    firefox_setup 
-    sudo pacman -Rns wget jq libxml2
     # xinit
     xinit_setup
     # bash profile
@@ -108,16 +106,19 @@ arch_install() {
     config_setup
     # xorg
     xorg_setup
-    # scripts
-    scripts_setup
+    # .bin
+    bin_setup
     # git
     git_setup
     # vim
     vim_setup
     # default directories
     mkdir -p $HOME/{dev,downloads,faks,pictures}
-    # firefox download directory
-    sh .firefox/downloadDir.sh
+    # firefox setup
+    firefox_setup 
+    ./.firefox/downloadDir.sh
+    # remove helpers
+    sudo pacman -Rns wget jq libxml2
 }
 
 DIST=''

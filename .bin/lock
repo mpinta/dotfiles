@@ -4,9 +4,6 @@ IMAGE='/tmp/lock.png'
 
 scrot $IMAGE
 
-# convert to pixel
-#convert $IMAGE -scale 10% -scale 1000% $IMAGE
-
 # convert to blur
 convert $IMAGE -blur '5x3' $IMAGE
 
