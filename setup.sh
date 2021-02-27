@@ -20,6 +20,10 @@ xorg_setup() {
     sudo mkdir -p /etc/X11/xorg.conf.d/ && cp -r .xorg/* -t /etc/X11/xorg.conf.d/
 }
 
+modprobe_setup() {
+    sudo mkdir -p /etc/modprobe.d/ && cp -r .modprobe.d/* -r /etc/modprobe.d/
+}
+
 bin_setup() {
     mkdir -p $HOME/.bin/ && cp -r .bin/* -t $HOME/.bin/
 }
@@ -95,6 +99,7 @@ arch_install() {
     sudo pacman -S firefox vlc transmission-cli --noconfirm
     # fonts
     sudo pacman -S noto-fonts
+    sudo pacman -S ttf-fira-code
     sudo pacman -S ttf-font-awesome otf-font-awesome
     sudo pacman -S ttf-font-awesome-4 otf-font-awesome-4
     fonts_setup
@@ -106,6 +111,8 @@ arch_install() {
     config_setup
     # xorg
     xorg_setup
+    # modprobe.d
+    modprobe_setup
     # .bin
     bin_setup
     # git

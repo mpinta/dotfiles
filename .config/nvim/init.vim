@@ -27,26 +27,24 @@ set smartindent
 " Real time search results
 set incsearch
 
-" Fix color erase for 256-color teminal
-" set term=screen-256color
-
 " Plugins
 call plug#begin('~/.vim.plugged')
 
-Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'morhetz/gruvbox'
 Plug 'vim-utils/vim-man'
 Plug 'mbbill/undotree'
 
 call plug#end()
 
 " Set colorscheme
-colorscheme dracula
+colorscheme gruvbox
 
 " Transparent background
-" highlight Normal guibg=NONE ctermbg=NONE
+highlight Normal guibg=NONE ctermbg=NONE
 
 " Transparent cursor line
 highlight CursorLine guibg=NONE ctermbg=NONE
+highlight clear CursorLineNR
 
 " Window size
 let netrw_winsize=25
