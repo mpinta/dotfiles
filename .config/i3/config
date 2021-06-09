@@ -176,8 +176,8 @@ bar {
     position bottom
     tray_output none
     status_command /usr/bin/bumblebee-status \
-    -m date time pasink pasource brightness nic sensors memory battery \
-    -p root.path=/ nic.states="up" nic.format="{ssid}" date.format="%d/%m/%Y" time.format="%H:%M" sensors.show_freq="false" memory.usedonly="true" \
+    -m date time pasink pasource brightness nic memory battery \
+    -p root.path=/ nic.states="up" nic.format="{ssid}" date.format="%d/%m/%Y" time.format="%H:%M" memory.usedonly="true" \
     -t default
 }
 
@@ -185,22 +185,22 @@ bar {
 # Gaps
 # ---
 
-for_window [class="^.*"] border pixel 0  
-gaps inner 6
-gaps outer 6
+for_window [class="^.*"] border pixel 0
+gaps inner 3
+gaps outer 3
 
 # ---
 # Custom bindings
 # ---
 
 # language toggle
-exec_always --no-startup-id setxkbmap us,si -option 'grp:alt_shift_toggle'
+exec_always --no-startup-id setxkbmap us,si -option "grp:alt_shift_toggle"
 
 # screenshot current screen and save it to pictures
-bindsym Print exec --no-startup-id $HOME/.bin/screenshot -p
+bindsym $mod+p exec --no-startup-id $HOME/.bin/screenshot -p
 
 # screenshot current screen and save it to clipboard
-bindsym $mod+p exec --no-startup-id $HOME/.bin/screenshot -c
+# bindsym $mod+p exec --no-startup-id $HOME/.bin/screenshot -c
 
 # screenshot gui 
 bindsym $mod+Shift+p exec --no-startup-id $HOME/.bin/screenshot -g
@@ -219,15 +219,9 @@ for_window [class="floating_term"] floating enable, resize set 800px 500px
 # Custom scripts
 # ---
 
-# picom
-exec --no-startup-id picom &
-
 # screenshot
 exec --no-startup-id $HOME/.bin/screenshot -s
 
 # background
 exec_always --no-startup-id $HOME/.bin/background
-
-# redshift
-# exec --no-startup-id redshift-gtk
 

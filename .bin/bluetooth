@@ -39,17 +39,6 @@ disconnect_airpods() {
     closing_sequence
 }
 
-connect_keyboard() {
-    initial_sequence
-    echo -e 'connect FC:A3:08:00:61:35' | bluetoothctl
-    closing_sequence
-}
-
-disconnect_keyboard() {
-    echo -e 'disconnect FC:A3:08:00:61:35' | bluetoothctl
-    closing_sequence
-}
-
 closing_sequence() {
     sleep 1
     echo -e 'scan off\nexit' | bluetoothctl
@@ -62,8 +51,6 @@ while [[ $# -gt 0 ]]; do
         -dw|--disconnect-wh) disconnect_wh; break;;
         -ca|--connect-airpods) connect_airpods; break;;
         -da|--disconnect-airpods) disconnect_airpods; break;;
-        -ck|--connect-keyboard) connect_keyboard; break;;
-        -dk|--disconnect-keyboard) disconnect_keyboard; break;;
         *) echo "Unvalid parameter: $1"; exit 1;;
     esac
 done

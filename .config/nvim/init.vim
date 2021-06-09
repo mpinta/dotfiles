@@ -6,45 +6,38 @@ set guicursor=
 set nowrap
 set noswapfile
 set nobackup
-set undodir=~/.vim/undodir
 set undofile
-set colorcolumn=80
+set undodir=~/.config/nvim/undodir
+set colorcolumn=90
 set noerrorbells
 set relativenumber
 set cursorline
 set tabstop=4 softtabstop=4
 set shiftwidth=4
-
 " Tab to spaces
 set expandtab
-
 " Enable case sensitive search
 set smartcase
-
 " Better indent to new lines 
 set smartindent
-
 " Real time search results
 set incsearch
 
 " Plugins
-call plug#begin('~/.vim.plugged')
+call plug#begin()
 
-Plug 'morhetz/gruvbox'
-Plug 'vim-utils/vim-man'
 Plug 'mbbill/undotree'
+Plug 'tjdevries/colorbuddy.vim'
+Plug 'tjdevries/gruvbuddy.nvim'
 
 call plug#end()
 
 " Set colorscheme
-colorscheme gruvbox
-
-" Transparent background
-highlight Normal guibg=NONE ctermbg=NONE
-
+lua require('colorbuddy').colorscheme('gruvbuddy')
 " Transparent cursor line
 highlight CursorLine guibg=NONE ctermbg=NONE
-highlight clear CursorLineNR
+" Transparent number line
+highlight clear LineNr
 
 " Window size
 let netrw_winsize=25
@@ -66,5 +59,5 @@ nnoremap <leader>l :wincmd l<CR>
 noremap <leader>u :UndotreeShow<CR>
 
 " Map file explorer 
-noremap <leader>fe :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+noremap <leader>f :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 
